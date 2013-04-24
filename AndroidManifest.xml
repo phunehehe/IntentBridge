@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:host="intentbridge.com" />
+                <data android:host="intentbridge.phunehehe.github.com" />
                 <data android:scheme="http" />
                 <data android:scheme="https" />
             </intent-filter>
