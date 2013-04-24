@@ -29,11 +29,11 @@ contains both URLs, and IntentBridge splits that URL.
 
 Here is the structure of the magic URL:
 
-    scheme://intentbridge.phunehehe.github.com/action/target_uri/extras
+`scheme`://intentbridge.phunehehe.github.com/`action`/`target_uri`/`extras`
 
   - `scheme` can be either `http` or `https`.
   - `action` is the intent action, such as `android.intent.action.VIEW`.
   - `target_uri` is the URI that is passed to the intent. In our movie example,
-    it's the URL of the movie.
+    it's the URL of the movie, URL-encoded.
   - `extras` is the list of "extras" to pass to the intent, in JSON format,
     URL-encoded.
