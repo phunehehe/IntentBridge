@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -23,13 +23,15 @@ public class MainActivity extends Activity {
 		Log.d("IB", message);
 	}
 
-	private Serializable parseExtra(String type, Object value) {
-		if (type == "android.net.Uri[]") {
+	private Serializable parseExtra(String type, Object value)
+			throws JSONException {
+		if (type.equals("android.net.Uri[]")) {
 			List<Uri> values = new ArrayList<Uri>();
-			for (String v : (Iterable<String>) value) {
-				values.add(Uri.parse(v));
+			JSONArray v = (JSONArray) value;
+			for (int i = 0; i < v.length(); i++) {
+				values.add(Uri.parse(v.getString(i)));
 			}
-			return values.toArray();
+			return values.toArray(new Uri[0]);
 		}
 		return null;
 	}
@@ -37,51 +39,65 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+
 		Uri data = getIntent().getData();
 		if (data == null) {
-			log("You are not supposed to use me this way.");
+			Toast.makeText(getApplicationContext(),
+					"You are not supposed to run me directly.",
+					Toast.LENGTH_SHORT).show();
+			finish();
 			return;
 		}
+
 		List<String> segments = new ArrayList<String>();
 		for (String segment : data.getPathSegments()) {
 			try {
 				String result = URLDecoder.decode(segment, "UTF-8");
-				log(result);
 				segments.add(result);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Toast.makeText(getApplicationContext(),
+						"Could not decode " + segment, Toast.LENGTH_SHORT)
+						.show();
+				finish();
+				return;
 			}
+		}
+
+		if (segments.size() < 1) {
+			Toast.makeText(
+					getApplicationContext(),
+					"I need at least one parameter for the action. None found.",
+					Toast.LENGTH_SHORT).show();
+			finish();
+			return;
 		}
 
 		String action = segments.get(0);
 		Intent intent = new Intent(action);
 
-		Uri videoUri = Uri.parse(segments.get(1));
-		intent.setData(videoUri);
-
-		try {
-			JSONArray extras = new JSONArray(segments.get(2));
-			for (int i = 0; i < extras.length(); i++) {
-				JSONObject extra = extras.getJSONObject(i);
-				String name = extra.getString("name");
-				Serializable value = parseExtra(extra.getString("type"),
-						extra.get("value"));
-				intent.putExtra(name, value);
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (segments.size() > 1) {
+			Uri videoUri = Uri.parse(segments.get(1));
+			intent.setData(videoUri);
 		}
+
+		if (segments.size() > 2) {
+			try {
+				JSONArray extras = new JSONArray(segments.get(2));
+				for (int i = 0; i < extras.length(); i++) {
+					JSONObject extra = extras.getJSONObject(i);
+					String name = extra.getString("name");
+					Serializable value = parseExtra(extra.getString("type"),
+							extra.get("value"));
+					intent.putExtra(name, value);
+				}
+			} catch (JSONException e) {
+				Toast.makeText(getApplicationContext(),
+						"Could not parse extras.", Toast.LENGTH_SHORT).show();
+				finish();
+				return;
+			}
+		}
+
 		startActivity(intent);
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
 }
