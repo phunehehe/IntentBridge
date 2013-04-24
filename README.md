@@ -51,10 +51,11 @@ API](https://sites.google.com/site/mxvpen/api)):
         }
     ]
 
-Install [MX
-Player](https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad),
-IntentBridge, use your Android device and [click
-here](http://intentbridge.phunehehe.github.com/android.intent.action.VIEW/http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fsample_mpeg4.mp4/%5B%7B%22name%22%3A%22subs%22%2C%22type%22%3A%22android.net.Uri%5B%5D%22%2C%22value%22%3A%5B%22http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fdemo.srt%22%5D%7D%5D)
+Install
+[MX Player](https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad),
+[IntentBridge](http://d.pr/f/NlOQ),
+use your Android device and
+[click here](http://intentbridge.phunehehe.github.com/android.intent.action.VIEW/http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fsample_mpeg4.mp4/%5B%7B%22name%22%3A%22subs%22%2C%22type%22%3A%22android.net.Uri%5B%5D%22%2C%22value%22%3A%5B%22http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fdemo.srt%22%5D%7D%5D)
 to convince yourself that it actually works.
 
 ## So this is a kind of movie player?
