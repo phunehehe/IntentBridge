@@ -37,3 +37,27 @@ Here is the structure of the magic URL:
     it's the URL of the movie, URL-encoded.
   - `extras` is the list of "extras" to pass to the intent, in JSON format,
     URL-encoded.
+
+In our example, `extras` in its full form is as follow (as per [MX Player's
+API](https://sites.google.com/site/mxvpen/api)):
+
+    [
+        {
+            "name": "subs",
+            "type": "android.net.Uri[]",
+            "value": [
+                "http://phunehehe.github.io/IntentBridge/demo.srt"
+            ]
+        }
+    ]
+
+Install [MX
+Player](https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad),
+IntentBridge, use your Android device and [click
+here](http://intentbridge.phunehehe.github.com/android.intent.action.VIEW/http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fsample_mpeg4.mp4/%5B%7B%22name%22%3A%22subs%22%2C%22type%22%3A%22android.net.Uri%5B%5D%22%2C%22value%22%3A%5B%22http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fdemo.srt%22%5D%7D%5D)
+to convince yourself that it actually works.
+
+## So this is a kind of movie player?
+
+Not really, it can be use to trigger any Android intent, but the movie playing
+part scratches my itch :)
