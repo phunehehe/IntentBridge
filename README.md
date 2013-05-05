@@ -29,9 +29,8 @@ contains both URLs, and IntentBridge splits that URL.
 
 Here is the structure of the magic URL:
 
-`scheme`://intentbridge.phunehehe.github.com/`action`/`target_uri`/`extras`
+http://phunehehe.github.io/IntentBridge/`action`/`target_uri`/`extras`
 
-  - `scheme` can be either `http` or `https`.
   - `action` is the intent action, such as `android.intent.action.VIEW`.
   - `target_uri` is the URI that is passed to the intent. In our movie example,
     it's the URL of the movie, URL-encoded.
@@ -53,9 +52,9 @@ API](https://sites.google.com/site/mxvpen/api)):
 
 Install
 [MX Player](https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad),
-[IntentBridge](http://d.pr/f/NlOQ),
+[IntentBridge](http://d.pr/f/Fy80),
 use your Android device and
-[click here](http://intentbridge.phunehehe.github.com/android.intent.action.VIEW/http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fsample_mpeg4.mp4/%5B%7B%22name%22%3A%22subs%22%2C%22type%22%3A%22android.net.Uri%5B%5D%22%2C%22value%22%3A%5B%22http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fdemo.srt%22%5D%7D%5D)
+[click here](http://phunehehe.github.io/IntentBridge/android.intent.action.VIEW/http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fsample_mpeg4.mp4/%5B%7B%22name%22%3A%22subs%22%2C%22type%22%3A%22android.net.Uri%5B%5D%22%2C%22value%22%3A%5B%22http%3A%2F%2Fphunehehe.github.io%2FIntentBridge%2Fdemo.srt%22%5D%7D%5D)
 to convince yourself that it actually works.
 
 ## So this is a kind of movie player?

@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private static int ACTION = 1;
+	private static int TARGET = 2;
+	private static int EXTRAS = 3;
+
 	private static void log(String message) {
 		Log.d("IB", message);
 	}
@@ -63,7 +67,10 @@ public class MainActivity extends Activity {
 			}
 		}
 
-		if (segments.size() < 1) {
+		int segmentSize = segments.size();
+
+		// One more segment for the path filter
+		if (segmentSize < ACTION + 1) {
 			Toast.makeText(
 					getApplicationContext(),
 					"I need at least one parameter for the action. None found.",
@@ -72,17 +79,17 @@ public class MainActivity extends Activity {
 			return;
 		}
 
-		String action = segments.get(0);
+		String action = segments.get(ACTION);
 		Intent intent = new Intent(action);
 
-		if (segments.size() > 1) {
-			Uri videoUri = Uri.parse(segments.get(1));
-			intent.setData(videoUri);
+		if (segmentSize > TARGET) {
+			Uri uri = Uri.parse(segments.get(TARGET));
+			intent.setData(uri);
 		}
 
-		if (segments.size() > 2) {
+		if (segmentSize > EXTRAS) {
 			try {
-				JSONArray extras = new JSONArray(segments.get(2));
+				JSONArray extras = new JSONArray(segments.get(EXTRAS));
 				for (int i = 0; i < extras.length(); i++) {
 					JSONObject extra = extras.getJSONObject(i);
 					String name = extra.getString("name");
