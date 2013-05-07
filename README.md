@@ -29,7 +29,7 @@ contains both URLs, and IntentBridge splits that URL.
 
 Here is the structure of the magic URL:
 
-http://phunehehe.github.io/IntentBridge/`action`/`target_uri`/`extras`
+http://phunehehe.github.io/IntentBridge /`action`/`target_uri`/`extras`
 
   - `action` is the intent action, such as `android.intent.action.VIEW`.
   - `target_uri` is the URI that is passed to the intent. In our movie example,
